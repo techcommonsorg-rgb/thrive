@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thrive@Meriden — Student Wellbeing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #b5cbb2;
+    --sage-light: #d4e6d1;
+    --sage-pale: #eaf3e8;
+    --beige: #f5f0e8;
+    --beige-warm: #ede6d6;
+    --white: #fefefe;
+    --stone: #8a8a80;
+    --text-dark: #2d2d2a;
+    --text-mid: #5a5a54;
+    --text-light: #8a8a80;
+    --border: rgba(181,203,178,0.35);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--white);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(254,254,254,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span {
+    color: var(--sage);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--beige) 0%, var(--sage-pale) 60%, var(--white) 100%);
+    display: flex;
+    align-items: center;
+    padding: 100px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(181,203,178,0.28) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(237,230,214,0.5) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    background: rgba(181,203,178,0.18);
+    border: 1px solid rgba(181,203,178,0.4);
+    padding: 6px 14px;
+    border-radius: 40px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    max-width: 420px;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--sage);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: #9cb899;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    margin-left: 14px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--sage);
+    color: var(--text-dark);
+  }
+
+  /* Hero card */
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 8px 48px rgba(140,160,138,0.10);
+  }
+
+  .hero-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mood-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .mood-btn {
+    flex: 1;
+    padding: 16px 8px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--beige);
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .mood-btn:hover, .mood-btn.active {
+    background: var(--sage-pale);
+    border-color: var(--sage);
+    transform: scale(1.06);
+  }
+
+  .mood-btn p {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .mini-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .mini-stat {
+    background: var(--beige);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+
+  .mini-stat-label {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .mini-stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-dark);
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 100px 48px;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--beige);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.5;
+    border-left: 2px solid var(--sage);
+    padding-left: 28px;
+    margin-top: 40px;
+  }
+
+  .about-right p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: box-shadow 0.25s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sage-light), var(--beige-warm));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 12px 40px rgba(140,160,138,0.12);
+    transform: translateY(-3px);
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .feature-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--sage);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+
+  .feature-desc {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    background: var(--sage-pale);
+    color: var(--sage);
+    padding: 4px 12px;
+    border-radius: 40px;
+    letter-spacing: 0.04em;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: linear-gradient(180deg, var(--white) 0%, var(--sage-pale) 100%);
+  }
+
+  .steps {
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--sage-light), transparent);
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+  }
+
+  .step:nth-child(1) { animation-delay: 0.1s; }
+  .step:nth-child(2) { animation-delay: 0.2s; }
+  .step:nth-child(3) { animation-delay: 0.3s; }
+  .step:nth-child(4) { animation-delay: 0.4s; }
+  .step:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-num {
+    width: 64px;
+    height: 64px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--sage);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body {
+    padding-top: 14px;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .step-emoji {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* BENEFITS */
+  .benefits {
+    background: var(--beige-warm);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .benefit-dot {
+    width: 22px;
+    height: 22px;
+    background: var(--sage-pale);
+    border: 1px solid var(--sage-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .benefit-dot::after {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+  }
+
+  .benefits-visual {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 32px rgba(140,160,138,0.08);
+  }
+
+  .bv-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  .bar-row {
+    margin-bottom: 18px;
+  }
+
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    margin-bottom: 7px;
+    font-weight: 400;
+  }
+
+  .bar-track {
+    height: 6px;
+    background: var(--sage-pale);
+    border-radius: 40px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--sage-light), var(--sage));
+    border-radius: 40px;
+    transition: width 1.2s ease;
+  }
+
+  /* CONTACT / PROPOSAL */
+  .proposal {
+    background: var(--white);
+  }
+
+  .proposal-box {
+    background: linear-gradient(135deg, var(--sage-pale) 0%, var(--beige) 100%);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .proposal-box .section-title { margin-bottom: 16px; }
+
+  .proposal-body p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+
+  .proposal-contact {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+  }
+
+  .proposal-contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    font-weight: 300;
+  }
+
+  .contact-row:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--sage-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--beige);
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-dark);
+  }
+
+  .footer-logo span { color: var(--sage); }
+
+  .footer-note {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Thrive<span>@</span>Meriden</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#proposal">Proposal</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-label">Meriden School · Student Wellbeing</span>
+      <h1>Wellbeing that <em>grows</em> with you</h1>
+      <p class="hero-desc">A dedicated wellbeing app for Meriden students — supporting mental health, building resilience, and connecting you to the care you need, whenever you need it.</p>
+      <a href="#features" class="btn-primary">Explore Features</a>
+      <a href="#proposal" class="btn-ghost">View Proposal</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-title">How are you feeling today?</div>
+        <div class="mood-row">
+          <div class="mood-btn active">😊<p>Great</p></div>
+          <div class="mood-btn">🙂<p>Good</p></div>
+          <div class="mood-btn">😐<p>Okay</p></div>
+          <div class="mood-btn">😞<p>Low</p></div>
+          <div class="mood-btn">😔<p>Struggling</p></div>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <div class="mini-stat-label">Mood Streak</div>
+            <div class="mini-stat-val">12 days</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-label">Sleep Score</div>
+            <div class="mini-stat-val">Good</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-label">Mindfulness</div>
+            <div class="mini-stat-val">3 min</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-stat-label">Weekly Check</div>
+            <div class="mini-stat-val">Done ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left fade-in">
+        <div class="section-label">Our Purpose</div>
+        <h2 class="section-title">Supporting every Meriden student</h2>
+        <blockquote class="about-quote">"A safe and accessible platform where students can monitor their wellbeing, learn coping strategies, and easily access help when needed."</blockquote>
+      </div>
+      <div class="about-right fade-in">
+        <p>Adolescence is a challenging time, with pressures from academic work, friendships, and personal expectations. Thrive@Meriden provides a thoughtful, private space designed specifically for Meriden students.</p>
+        <p>Integrated into the school's pastoral care program, the app complements existing support systems — giving students tools to understand themselves better, develop healthy habits, and reach out when they need it most.</p>
+        <p>Built with care, empathy, and the Meriden community in mind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">Key Features</div>
+      <h2 class="section-title">Everything you need to thrive</h2>
+      <p class="section-sub">Six thoughtfully designed features to support your mental health, emotional awareness, and personal growth.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🌿</span>
+        <div class="feature-num">01</div>
+        <div class="feature-title">Daily Mood Check-In</div>
+        <p class="feature-desc">Log how you're feeling each day using a simple emoji scale. Over time, the app tracks patterns and helps you recognise changes in your emotional wellbeing.</p>
+        <div class="feature-tags">
+          <span class="tag">Daily habit</span>
+          <span class="tag">Pattern tracking</span>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">📋</span>
+        <div class="feature-num">02</div>
+        <div class="feature-title">Self-Assessment Tools</div>
+        <p class="feature-desc">Short quizzes help you reflect on stress, anxiety, sleep habits, and study-life balance — with personalised resource suggestions based on your results.</p>
+        <div class="feature-tags">
+          <span class="tag">Stress</span>
+          <span class="tag">Anxiety</span>
+          <span class="tag">Sleep</span>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🧘</span>
+        <div class="feature-num">03</div>
+        <div class="feature-title">Breathing & Mindfulness</div>
+        <p class="feature-desc">Guided exercises to help you calm down during stressful moments — including 1-minute breathing resets, short meditations, and focus exercises before exams.</p>
+        <div class="feature-tags">
+          <span class="tag">Breathing</span>
+          <span class="tag">Meditation</span>
+          <span class="tag">Focus</span>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🤝</span>
+        <div class="feature-num">04</div>
+        <div class="feature-title">How to Get Help</div>
+        <p class="feature-desc">Easy access to school counsellors, pastoral care staff, and external wellbeing helplines — so finding support is never complicated when you need it most.</p>
+        <div class="feature-tags">
+          <span class="tag">Counselling</span>
+          <span class="tag">Pastoral care</span>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">📚</span>
+        <div class="feature-num">05</div>
+        <div class="feature-title">Wellbeing Resources</div>
+        <p class="feature-desc">Articles and tips on managing exam stress, healthy study habits, building confidence, maintaining friendships, and developing resilience.</p>
+        <div class="feature-tags">
+          <span class="tag">Exam tips</span>
+          <span class="tag">Resilience</span>
+          <span class="tag">Confidence</span>
+        </div>
+      </div>
+      <div class="feature-card fade-in">
+        <span class="feature-icon">🌱</span>
+        <div class="feature-num">06</div>
+        <div class="feature-title">Goal Setting</div>
+        <p class="feature-desc">Set personal wellbeing goals around sleep, study breaks, and mindfulness practice. Gentle reminders help you stay on track and build lasting healthy habits.</p>
+        <div class="feature-tags">
+          <span class="tag">Sleep goals</span>
+          <span class="tag">Reminders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple steps to support</h2>
+      <p class="section-sub">Getting started with Thrive@Meriden is quick, private, and easy — designed to fit naturally into your school day.</p>
+    </div>
+    <div class="steps" style="max-width: 640px; margin-top: 56px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open the App</div>
+          <p class="step-desc">Log in using your school account for quick, private access to wellbeing support anytime, anywhere.</p>
+          <span class="step-emoji">📱</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Daily Mood Check-In</div>
+          <p class="step-desc">Record how you feel using a simple scale or emoji system. This helps you recognise your emotional patterns over time.</p>
+          <span class="step-emoji">🙂 😐 😞</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Explore Wellbeing Tools</div>
+          <p class="step-desc">Access breathing exercises, mindfulness activities, and stress-management tips to stay calm and focused throughout the day.</p>
+          <span class="step-emoji">🧠</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Self-Assessment</div>
+          <p class="step-desc">Take short wellbeing quizzes to reflect on stress, sleep, and anxiety. The app suggests helpful resources based on your results.</p>
+          <span class="step-emoji">📊</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Get Support</div>
+          <p class="step-desc">If you need help, connect directly with a school counsellor, access pastoral care staff, or find external support services — all in one place.</p>
+          <span class="step-emoji">🤝</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="section-inner">
+    <div class="benefits-grid">
+      <div class="fade-in">
+        <div class="section-label">Benefits for Students</div>
+        <h2 class="section-title">Grow stronger, feel supported</h2>
+        <p class="section-sub">Thrive@Meriden empowers students to take an active role in their own wellbeing journey.</p>
+        <ul class="benefits-list">
+          <li>
+            <div class="benefit-dot"></div>
+            <span>Develop emotional awareness and understand how your mood shifts over time</span>
+          </li>
+          <li>
+            <div class="benefit-dot"></div>
+            <span>Learn healthy coping strategies that work for you</span>
+          </li>
+          <li>
+            <div class="benefit-dot"></div>
+            <span>Access support early, before small stressors become bigger challenges</span>
+          </li>
+          <li>
+            <div class="benefit-dot"></div>
+            <span>Build resilience and confidence for school and beyond</span>
+          </li>
+          <li>
+            <div class="benefit-dot"></div>
+            <span>Feel more connected to Meriden's wellbeing support system</span>
+          </li>
+        </ul>
+      </div>
+      <div class="benefits-visual fade-in">
+        <div class="bv-title">Student Wellbeing Areas</div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Emotional Awareness</span><span>82%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 82%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Stress Management</span><span>74%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 74%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Sleep Quality</span><span>68%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 68%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Resilience Building</span><span>77%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 77%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Help-Seeking Confidence</span><span>71%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width: 71%"></div></div>
+        </div>
+        <p style="font-size:0.7rem; color: var(--text-light); margin-top: 20px; font-style: italic;">Illustrative student wellbeing goals</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPOSAL -->
+<section class="proposal" id="proposal">
+  <div class="section-inner">
+    <div class="fade-in">
+      <div class="section-label">The Proposal</div>
+      <h2 class="section-title">A message to Mrs Brennan</h2>
+    </div>
+    <div class="proposal-box fade-in">
+      <div class="proposal-body">
+        <div class="section-label" style="margin-bottom: 10px;">Proposal for a Student Wellbeing App</div>
+        <p>Adolescence is a time when many students experience significant academic and social pressures. While Meriden already provides strong pastoral support, a dedicated wellbeing app could further enhance this by giving students easy access to resources at any time.</p>
+        <p>The app would include daily mood check-ins, self-assessment tools, guided breathing and mindfulness exercises, and clear information about accessing school counsellors and pastoral staff.</p>
+        <p>By integrating the app into the pastoral program, students would have a private way to monitor their wellbeing and develop healthy coping strategies — encouraging early help-seeking and a stronger sense of support throughout school life.</p>
+        <p style="margin-top:24px; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--text-dark);">Thank you for considering this proposal.</p>
+      </div>
+      <div class="proposal-contact">
+        <div class="proposal-contact-title">Support Contacts</div>
+        <div class="contact-row">
+          <div class="contact-icon">👩‍💼</div>
+          <span>School Counsellor — available Monday–Friday</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🏫</div>
+          <span>Pastoral Care Staff — via the app or front office</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <span>External Helplines — Lifeline, Kids Helpline & more</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🔒</div>
+          <span>All check-ins are private and secure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Thrive<span>@</span>Meriden</div>
+  <div class="footer-note">Supporting Meriden students · Pastoral Care Program</div>
+  <div class="footer-note">© 2025 Meriden School</div>
+</footer>
+
+<script>
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Mood button toggle
+  document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
